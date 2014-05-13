@@ -1,0 +1,23 @@
+Options +FollowSymLinks
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /imaginecms/
+  
+  #RewriteRule ^admin/([^/.]+)$ admin/$1/ [R]
+  #RewriteRule ^admin/([^/.]+)/$ admin.php?s=$1 [L]
+  #http://www.yourhtmlsource.com/sitemanagement/urlrewriting.html
+  #http://www.workingwith.me.uk/articles/scripting/mod_rewrite
+  
+  RewriteRule ^([^/.]+)$ $1/ [R]
+  RewriteRule ^admin/$ admin/index.php [L]
+  RewriteRule ^([^/.]+)/$ index.php?s=$1 [L]
+
+  RewriteCond %{REQUEST_URI} ^(.*)/run/(.*)
+  RewriteRule ^(.*)/run/(.*)$ run.php?s=$1&prms=$2&%{QUERY_STRING}
+
+  RewriteCond %{REQUEST_URI} ^(.*)/get/([m|s])/(.*)
+  RewriteRule ^(.*)/get/([m|s])/(.*)$ get.php?$2=$1&prms=$3&%{QUERY_STRING}
+
+  #http://htaccess.madewithlove.be/
+  #http://www.generateit.net/mod-rewrite/index.php
+</IfModule>
