@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    {@HEAD(META)}
+    <link rel="stylesheet" type="text/css" media="projection, screen" href="{@LAYOUT(PATH)}/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="projection, screen" href="{@LAYOUT(PATH)}/css/styles.css" />
+    {@HEAD(LINK)}
+    {@HEAD(SCRIPT)}
+    {@HEAD(TITLE)}
+  </head>
+<body>
+    {@BODY[HEADER]}
+    <div class="topcontent">
+      <div class="pagetitle">
+          <h1>Admin{@TITLE}</h1>
+      </div>
+      <div class="navbar">
+          {@NAVBAR}
+      </div>
+    </div>
+    <div class="pagecontent">
+      {@PARASIT-PRELOAD-CNT}
+      {@BODY}
+      {@PARASIT-POSTLOAD-CNT}
+    </div>
+    <address id="pagefooter" class="pagefooter">admin | 2014 | D&eacute;velopp&eacute; par Alberto Hern&aacute;ndez</address>
+    {@BODY[FOOTER]}
+</body>
+</html>

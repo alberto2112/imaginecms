@@ -1,0 +1,4 @@
+<?php
+    global $iPAGE;
+    return print_r($iPAGE->layout); 
+?>

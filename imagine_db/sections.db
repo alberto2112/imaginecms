@@ -1,0 +1,7 @@
+#CODSECTION LABEL APP ENABLED
+__DEFAULT:|:home:|:null:|:1
+home:|:Home:|:freeContent_Files:|:1
+services:|:Services:|:freeContent_Files:|:1
+about:|:About us:|:freeContent_Files:|:1
+work:|:Work:|:workingGallery:|:1
+contact:|:Contact us:|:contactMaker:|:1

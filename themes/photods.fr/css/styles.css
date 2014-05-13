@@ -1,0 +1,100 @@
+@import url("social.css");
+
+body {background-color:#111;color:#eee;}
+/* CONTAINERS
+ -------------------------------------*/
+.sys-container_960 {display:block; width:960px; margin:10px auto 0;background:#2D2D2D url("../images/bg-pagetitle-bubles.png") no-repeat right 77px;}
+
+.sys-pagetop,
+.sys-pagetitle {position:relative;width:960px;border-width:0 0 1px 0; border-style:solid;}
+
+.sys-pagetop {background: #212121 url("../images/bg-box-pagetop.png") no-repeat 40px 6px; height:59px;top:-125px;border-color:#555;}
+.sys-pagetitle {background:transparent url("../images/bg-box-pagetitle.png") no-repeat 32px 0;height:124px;top:60px;border-color:#777;}
+
+
+/* TOP
+-------------------------------------*/
+.sys-pagetop .slogan { font-size:127%; padding:16px 0 0 150px; color:#AAA;}
+
+/* TITLE
+-------------------------------------*/
+.sys-pagetitle h1 { 
+    background:transparent url("../images/pagetitle-logo.png") no-repeat 106px 10px;
+    padding:40px 0 0 0;
+    font-size:250%;
+    font-weight:bold;
+    text-indent:270px;
+    height:80px;
+    color:#EEE;
+}
+
+/* NAVBAR
+-------------------------------------*/
+ul.navbar { display:block; position:absolute; top:15px; right:3px; } /*-width:223px;*/
+ul.navbar li { list-style-type:none; display:inline-block; height:21px; margin:0 5px; font-size:90%; }/*-width:102px;*/
+
+.navbar, 
+ul.navbar li, 
+ul.navbar a { text-decoration:none; color:#FAFAFA; } 
+
+ul.navbar li {padding:0.35em 0 0 0;}
+
+.navbar-button {width:102px; text-align:center; background:transparent url("../images/navbar-button.png") no-repeat 0 0; margin:0 !important;}/*+width:102px;*/
+ul.navbar a.navbar-external {font-style:italic;}
+/* CONTENT
+-------------------------------------*/
+.sys-pagecontent {background:#808080 url("../images/bg-pagecontent.png") repeat-x 0 0; overflow:hidden;}
+.sys-pagecontent-child{width:930px;}
+
+
+/* FOOTER
+-------------------------------------*/
+.sys-pagefooter{ display:block; background-color:#4A4A4A; height:17px; vertical-align:middle; color:#fafafa; font-size:80%; font-style:normal; padding:11px 0 0 0;}
+
+/* OTHERS
+-------------------------------------*/
+.hidden {display:none !important; height:0 !important; overflow:hidden; }
+.tx-center {text-align:center;}
+
+/* TAMANOS
+-------------------------------*/
+.w_100 { width:98%; margin:7px 0.85%;}
+.w_33  { width:31.5%; margin:7px 0.75%;}
+.w_66  { width:65%; margin:7px 0.75%;}
+.w_50  { width:48.25%; margin:7px 0.75%;}
+
+/* MENSAJES
+------------------------------*/
+.sys-error,
+.sys-warning,
+.sys-success,
+.sys-info       { padding: 0.75em; border: 2px solid #ddd; }
+
+.sys-error      { background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; }
+.sys-warning    { background: #FFF6BF; color: #514721; border-color: #FFD324; }
+.sys-success    { background: #E6EFC2; color: #264409; border-color: #C6D880; }
+.sys-info       { background: #C2DAEF; color: #092944; border-color: #80B1D8; }
+
+.sys-error a    { color: #8a1f11; }
+.sys-warning a  { color: #514721; }
+.sys-success a  { color: #264409; }
+.sys-info a     { color: #092944; }
+
+
+/* Success, notice and error tags
+-------------------------------------------------------------- */
+
+.sys-tag_error, 
+.sys-tag_warning,
+.sys-tag_success,
+
+.sys-tag_info { padding:0px 6px 1px !important; }
+.sys-todo        { background-color: #FAEA2A; color: #01F !important; }
+.sys-tag_error   { background-color: #D8000C; color: #FFF !important; }
+.sys-tag_warning { background-color: #E1A200; color: #FFF !important; }
+.sys-tag_success { background-color: #64992C; color: #FFF !important; }
+.sys-tag_info    { background-color: #5A6986; color: #FFF !important; }
+.todo          { display:none; }
+
+/* Social styles
+-------------------------------------------------------------- */

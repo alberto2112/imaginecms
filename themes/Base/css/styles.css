@@ -1,0 +1,37 @@
+/* Blogberto by Alberto Hernandez */
+/* Reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:inherit;vertical-align:baseline;background:transparent;color:inherit;font-family:sans-serif,serif;}body{line-height:1;font:0.75em/1.7em Verdana,Arial,Geneva,Helvetica,sans-serif;color:#1E1E1E;}ol,ul{list-style:none;list-style-position:inside;}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+/* Styles */
+address.sys-footer {text-align:center;color:#777;font-style:normal;clear:both;width:100%;}
+body{background:#fff url('../images/page_bg.png') repeat-x left top;max-width:104em;margin:0 auto;}
+
+.sys-pagecontent, .sys-pagetop{min-width:960px;width:90%;margin:0 auto;}
+.sys-pagecontent{padding:10px 0;}
+.sys-pagetop {height:190px;}
+    .sys-pagetop h1.sys-sitename {text-indent:-999em;display:block;background:transparent url('../images/title_tag.png') no-repeat 0 0;width:155px;height:183px;position:absolute;margin:6px 0 0 17px;}
+    .sys-pagetop h2.sys-siteslogan {position:absolute;width:533px;font-size:180%;margin:80px 0 0 230px;font-weight:500;color:#2a2a2a;}
+    .navbar {display:block;text-align:right;margin:0;padding:15px 0 0 0}
+        .navbar li {display:inline;padding:1px 6px 2px;color:#3f3f3f;}
+            .navbar li a {color:#3f3f3f;text-decoration:none;}
+        .navbar li.navbar-active {background-color:#7AA44A;color:#fafafa}
+
+
+.blog_main{padding-right:300px;width:auto;}
+.blog_postlist{width:100%;float:left;position:relative;}
+.blog_sidebar{background-color:#999;float:left;position:relative;margin-right:-700px;width:300px;height:700px;}
+
+.blog_post, .blog_comments {padding:0 30px 30px 0;clear:both;}
+    .blog_post .title, .blog_post h2 {color:#262626;text-decoration:none;line-height:130%;margin:22px 0 8px;font-weight:bold;font-size:2.45em;font-family:Arial,sans-serif;}
+    .blog_post .title a, .blog_post h2 a{color:#2e2e2e;text-decoration:none;}
+    .blog_post .info, .blog_post .meta {color:#797979;padding:0.5em 0 0 0}
+    .blog_post .info span, .blog_post .meta span {padding:0 0 0 1em}
+    .blog_post .info a, .blog_post .meta a {color:#0066CC;text-decoration:none;}
+    .blog_post .entry {overflow:hidden;padding:1.5em 0 3em;color:#2e2e2e;font-size:130%;line-height:125%;}
+        .blog_post .entry p {padding:0.5em 0;}
+    .blog_post .read_more {}
+
+.blog_comment {margin:0 0 14px 0;border-bottom:1px #c9c9c9 solid;padding-bottom:0.5em;}
+    .blog_comment .comment_author{font-size:185%;color:#3151A2;display:block;font-weight:700;}
+    .blog_comment .comment_timestamp {font-size:90%;color:#777;}
+    .blog_comment .comment_entry {font-size:130%;line-height:120%;padding-top:1em;}

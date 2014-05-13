@@ -1,0 +1,9 @@
+#CODSECTION LABEL APP ENABLED
+__DEFAULT:|:home:|:null:|:1
+home:|:Home:|:freeContent_Files:|:1
+blog:|:Blog:|:littleBlog:|:1
+gallery:|:My gallery:|:socialGallery:|:1
+contact:|:Contact me:|:contactMaker:|:1
+__TEXT_1:|: | :|:0:|:1
+__LINK_1:|:Admin:|:/imaginecms/admin:|:1
+__LINK_2:|:Facebook:|:https://www.facebook.com:|:1

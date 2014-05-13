@@ -1,0 +1,5 @@
+#CODSECTION NAME APP ENABLED
+__DEFAULT:|:dashboard:|:null:|:1
+dashboard:|:Dashboard:|:admin_dashboard:|:1
+apps:|:APPs:|:admin_apps:|:1
+parasits:|:Parasits:|:admin_parasits:|:1
