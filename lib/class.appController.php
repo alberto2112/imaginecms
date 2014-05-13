@@ -52,5 +52,10 @@
         else
           return null;
     }
+
+    //Admin functions
+    function admin_dashboard(){}
+
+    function admin_action($action='default'){}
   }
 ?>
