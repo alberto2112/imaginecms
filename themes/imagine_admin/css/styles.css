@@ -1,10 +1,10 @@
-body{background-color:#3A3A54; color:#fff;}
+body{background-color:#f6f6f6; color:#222;}
 
-.topcontent,
-.pagecontent{width:85%;margin:0 auto 20px;padding:1em 1.75em;background-color:#1C1E25;}
-.pagecontent {background-color:#69718B;}
+.topcontent{margin:0;padding:1em 1.75em;background-color:#414141;height:100px;}
+.pagecontent, .navbar {width:85%; margin:auto;}
+.pagecontent {margin:-40px auto 0;background-color:#fff;border:solid 1px #aaa;padding:1em;}
 .pagetitle {font-size:275%;padding:1em 2em 0 1.3em;}
-.navbar {margin:0 0 -1em auto;width:300px}
+.navbar {padding:20px 0;}
 .navbar li {font-size:145%; padding:1em .5em .15em}
 .navbar li, .navbar li a {color:#fff; text-decoration:none;display:inline-block;}
 li.navbar-active {background-color: #66AED4; background: linear-gradient(#6EBCE5,#5A9ABB);}

@@ -1,4 +1,5 @@
- <?php
+<?php
+  //TODO ALL
   include('../config.inc');
   include(SYSTEM_ROOT.LIB_DIR.'system.php');
   //include(SYSTEM_ROOT.LIB_DIR.'txtDB.php');
@@ -30,7 +31,7 @@
   includeClass('appController');
   includeFile(CURRENT_APP_PATH.'controller.php');
 
-  if(!includeFile($_CURRENT['LAYOUT'].'/class.navbarMaker.php'))
+  if(!includeFile($_CURRENT['LAYOUT'].'/navbar.php'))
     includeClass('navbarMaker');
 
   $APP = new webApp($_CURRENT['SECTION']['APP']);

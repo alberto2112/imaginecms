@@ -1,6 +1,6 @@
  <?php
   include('./config.inc');
-  include(SYSTEM_ROOT.LIB_DIR.'system.php');
+  include(SYSTEM_ROOT.LIB_DIR.'system.lib.php');
   //include(SYSTEM_ROOT.LIB_DIR.'txtDB.php');
   $_CURRENT = $_DB = array();
   $_ERROR = array('CODE'=>'200','CONTENT'=>'OK');
@@ -9,7 +9,10 @@
   $_DB['SITECONFIG'] = getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'site.db');
 
   #Get site config
-  $_CURRENT['LAYOUT'] = SYSTEM_ROOT.LAYOUTS_DIR.$_DB['SITECONFIG']['LAYOUT']; //TODO -> Comprobar que el layout existe y es accesible
+  $_CURRENT['LAYOUT'] = SYSTEM_ROOT.LAYOUTS_DIR.$_DB['SITECONFIG']['LAYOUT'].'/'; //TODO -> Comprobar que el layout existe y es accesible
+  if(!file_exists($_CURRENT['LAYOUT']) ||
+    !(file_exists($_CURRENT['LAYOUT'].'controller.php') || file_exists($_CURRENT['LAYOUT'].'layout.inc' ))) //Algebra de bool, ley de Morgan !A · !B = !(A + B)
+    $_CURRENT['LAYOUT'] = SYSTEM_ROOT.LAYOUTS_DIR.'base/';
 
   #Calcular seccion que se esta consultando
   $_CURRENT['SECTION'] = getCurrentSection(URI_QUERY_SECTION, $_DB['SECTIONS']); # => array()
@@ -36,7 +39,7 @@
   }
 
 //TODO
-  if(includeFile($_CURRENT['APP']['PATH'].'controller.php')===false){
+  if(includeFile($_CURRENT['APP']['PATH'].'controller.class.php')===false){
     #Clear $_CURRENT['APP'] array
     $_CURRENT['APP']['PATH'] = $_CURRENT['APP']['URL'] = '';
 
@@ -57,7 +60,7 @@
   }
 
 //TODO
-  if(includeFile($_CURRENT['LAYOUT'].'/navbar.php')===false)
+  if(includeFile($_CURRENT['LAYOUT'].'/navbar.class.php')===false)
     includeClass('navbarMaker');
 
 
@@ -68,7 +71,8 @@
   //TODO
 
   #Cargar layout
-  $PAGE->set_layout($_CURRENT['LAYOUT'].'/layout.html');
+  if(includeFile($_CURRENT['LAYOUT'].'controller.php')===false)
+    $PAGE->set_layout($_CURRENT['LAYOUT'].'layout.inc');
 
   #Crear Navbar
   foreach($_DB['SECTIONS'] as $key=>$items){
@@ -100,8 +104,16 @@
       }
   }
 
-  @$PAGE->set_title('ImagineCMS'); //TODO
-  $PAGE->body = $APP->get_content($_CURRENT['SECTION']);
+  $PAGE->set_title('ImagineCMS'); //TODO
+  ob_start();
+    $app_getContent_result = null;
+    $app_getContent_result = $APP->get_content($_CURRENT['SECTION']);
+    if($app_getContent_result != null)
+      $PAGE->body = $app_getContent_result;
+    else
+      $PAGE->body = ob_end_flush();
+    //$PAGE->body = ob_get_contents();
+  //ob_end_clean();
 
   #APP PreRender actions
   $APP->load_headers();
