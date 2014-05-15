@@ -71,7 +71,9 @@
   //TODO
 
   #Cargar layout
-  if(includeFile($_CURRENT['LAYOUT'].'controller.php')===false)
+  if(file_exists($_CURRENT['LAYOUT'].'controller.php'))
+    $PAGE->set_layout($_CURRENT['LAYOUT'].'controller.php');
+  else
     $PAGE->set_layout($_CURRENT['LAYOUT'].'layout.inc');
 
   #Crear Navbar

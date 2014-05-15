@@ -368,12 +368,12 @@
       $this->body = $content;
     }
 //---------------------------------------
-    function set_layout($layout_path)
+    function set_layout($layout_name)
     /**
       * alias of load_layout
       */
     {
-        return $this->load_layout( $layout_path );
+        return $this->load_layout( $layout_name );
     }
 //--------------------------------------------------------------------------------------
     function load_layout($layout_name, $include_controller=true)
@@ -381,18 +381,22 @@
       * @return  true | false
       **/
     {
-        $layout_path = @dirname( $layout_name );
-
-        if(is_readable($layout_path))
+        if(is_readable($layout_name))
         {
-            $this->layout['NAME']       = basename( $layout_path );
-            $this->layout['PATH']       = $layout_path;
+            $this->layout['NAME']       = basename( @dirname( $layout_name ));
+            $this->layout['PATH']       = @dirname( $layout_name );
+            if(strtolower(substr($layout_name,-3))=='php')
+              $this->layout['CONTENT']    = include($layout_name);
+            else
+              $this->layout['CONTENT']    = file_get_contents($layout_name, true);
+/*
             # Comprobar si tiene controlador de flujo
             $this->layout['CONTENT']    = ($include_controller && file_exists($layout_path.'/controller.php'))?
                                                 include($layout_path.'/controller.php')
                                                 : ((is_readable($layout_name)?
                                                     file_get_contents($layout_name, true)
                                                     : '<h1>Layout not exists</h1><h3>'.$layout_name.'</h3>'));
+*/
             $this->document             = $this->layout['CONTENT'];
             return true;
         }
