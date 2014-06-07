@@ -20,8 +20,8 @@
   $_CURRENT['RELATIVE_URL'] = PUBLIC_ROOT.$_CURRENT['SECTION']['NAME'];
   $_CURRENT['APP'] = array(
     'NAME'=>$_CURRENT['SECTION']['APP'],
-    'PATH'=>SYSTEM_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'/',
-    'URL'=>PUBLIC_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'/'
+    'PATH'=>SYSTEM_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'.app/',
+    'URL'=>PUBLIC_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'.app/'
     );
   #Definir URL absoluta de la aplicacion
   define('CURRENT_URL',$_CURRENT['URL']);
