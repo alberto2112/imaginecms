@@ -1,86 +1,125 @@
 <?php
   //TODO ALL
   include('../config.inc');
-  include(SYSTEM_ROOT.LIB_DIR.'system.php');
+  include(SYSTEM_ROOT.LIB_DIR.'system.lib.php');
   //include(SYSTEM_ROOT.LIB_DIR.'txtDB.php');
+
+  includeClass('pageMaker');
+  includeClass('navbarMaker');
+
   $_CURRENT = array();
+  $_DB = array();
+  $_ERROR = array('CODE'=>'200','CONTENT'=>'OK');
+  $_CURRENT['WORKSPACE'] = WS_ADMIN;
 
+  $PAGE = new pageMaker(); //'XHTML_1.0_STRICT'
+  $PAGE->set_title('Admin page');
+
+#Get site config
   $_DB['SECTIONS'] = getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'admin_sections.db');//getSections();//SYSTEM_ROOT.'sections.develtmp.inc';
-  //$_DB['SITECONFIG'] = ; //TODO
+  $_DB['ADMINCONFIG'] = getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'admin.conf.db');
+  $_CURRENT['LAYOUT'] = SYSTEM_ROOT.ADMIN_DIR.LAYOUTS_DIR.'imagine_admin'; //TODO
 
-  #Get site config
-  $_CURRENT['LAYOUT'] = SYSTEM_ROOT.LAYOUTS_DIR.'imagine_admin'; //TODO
+  //Algebra de bool, ley de Morgan !A · !B = !(A + B)
+  if(!file_exists($_CURRENT['LAYOUT']) || !(file_exists($_CURRENT['LAYOUT'].'controller.php') || file_exists($_CURRENT['LAYOUT'].'layout.inc' )))
+    $_CURRENT['LAYOUT'] = SYSTEM_ROOT.ADMIN_DIR.LAYOUTS_DIR.'base/';
 
   #Calcular seccion que se esta consultando
-  $_CURRENT['SECTION'] = getCurrentSection(URI_QUERY_MODULE, $_DB['SECTIONS']);
-  $_CURRENT['APP'] = $_CURRENT['SECTION']['APP'];
-
-  #Definir ruta absoluta PRIVADA de la aplicacion
-  define('CURRENT_APP_PATH',SYSTEM_ROOT.APP_DIR.$_CURRENT['APP'].'/');
-  #Definir directorio PUBLICO relativo de la aplicacion
-  define('CURRENT_APP_URL',PUBLIC_ROOT.APP_DIR.$_CURRENT['APP'].'/');
-  #Definir URL absoluta de la aplicacion
-  define('CURRENT_URL','http://'.SITE_DOMAIN.PUBLIC_ROOT.$_CURRENT['SECTION']['NAME']);
-  #Definir URL relativa de la aplicacion
-  define('CURRENT_REL_URL',PUBLIC_ROOT.$_CURRENT['SECTION']['NAME']);
+  $_CURRENT['SECTION'] = getCurrentSection(false, $_DB['SECTIONS']); # => array()
+  $_CURRENT['URL'] = 'http://'.SITE_DOMAIN.PUBLIC_ROOT.ADMIN_DIR;//.$_CURRENT['SECTION']['CODSECTION'];
+  $_CURRENT['URI'] = PUBLIC_ROOT.ADMIN_DIR.'?'.URI_QUERY_SECTION.'='.$_CURRENT['SECTION']['CODSECTION'];
+  $_CURRENT['QUERY_STRING'] = '?'.URI_QUERY_SECTION.'='.$_CURRENT['SECTION']['CODSECTION'];
+  $_CURRENT['TOOL'] = array(
+    'NAME'=>$_CURRENT['SECTION']['TOOL'],
+    'PATH'=>SYSTEM_ROOT.APP_DIR.$_CURRENT['SECTION']['TOOL'].'/',
+    'URL'=>PUBLIC_ROOT.APP_DIR.$_CURRENT['SECTION']['TOOL'].'/'
+    );
 
   #Parasit PreLoad actions
   //TODO
 
-  includeClass("webMaker");
-  includeClass('appController');
-  includeFile(CURRENT_APP_PATH.'controller.php');
+  #Definir URL absoluta de la aplicacion
+  define('CURRENT_URL',$_CURRENT['URL']);
+  #Definir URL relativa de la aplicacion
+  define('CURRENT_URI',$_CURRENT['URI']);
 
-  if(!includeFile($_CURRENT['LAYOUT'].'/navbar.php'))
-    includeClass('navbarMaker');
-
-  $APP = new webApp($_CURRENT['SECTION']['APP']);
-  $PAGE = new webMaker(); //'XHTML_1.0_STRICT'
-  $NAVBAR = new navbarMaker();
-
-  #Parasit PostLoad actions
-  //TODO
-
-  #Cargar layout
-  $PAGE->set_layout($_CURRENT['LAYOUT'].'/layout.html');
-
-  #Crear Navbar
-  foreach($_DB['SECTIONS'] as $key=>$items){
-    /**
-    *   'ENABLED' = 0  => DISABLED
-    *   'ENABLED' = 1  => ENABLED AND VISIBLE
-    *   'ENABLED' = 2  => ENABLED AND HIDDEN
-    */
-    $item_type = 'STD';
-    if($key != '__DEFAULT' && $items[TXTBD_INDEX_ENABLED]==ITEM_ENABLED){
-      #DETERMINAR TIPO DE ENLACE
-      if(substr($key,0,6)=='__LINK'){
-        $item_type = 'EXTERNAL';
-        $NAVBAR->add_item($items[TXTBD_INDEX_LABEL],$items[TXTBD_INDEX_LINK],$item_type);
-      }elseif($key==$_CURRENT['SECTION']['NAME']){
-        $item_type = 'ACTIVE';
-        $NAVBAR->add_item($items[TXTBD_INDEX_LABEL],PUBLIC_ROOT.$key,$item_type);
-      } else
-        $NAVBAR->add_item($items[TXTBD_INDEX_LABEL],PUBLIC_ROOT.ADMIN_DIR.'?'.URI_QUERY_MODULE.'='.$key,$item_type);
-      }
+//TODO
+  if(includeClass('appController')===false){
+    echo "ERROR including class appController";
+    break;
   }
 
-  @$PAGE->set_title('ImagineCMS'); //TODO
-  $PAGE->body = $APP->get_content($_CURRENT['SECTION']);
+//TODO
+  if(includeFile($_CURRENT['TOOL']['PATH'].'controller.class.php')===false){
+    #Clear $_CURRENT['TOOL'] array
+    $_CURRENT['TOOL']['PATH'] = $_CURRENT['TOOL']['URL'] = '';
+
+    $TOOL = new appController(null);
+    $TOOL->set_content("<p><strong>ERROR</strong> including TOOL class controller: ".$_CURRENT['TOOL']['NAME'].'</p>');
+  }else{
+    #Definir ruta absoluta PRIVADA de la aplicacion
+    define('CURRENT_APP_PATH',$_CURRENT['TOOL']['PATH']);
+    #Definir directorio PUBLICO relativo de la aplicacion
+    define('CURRENT_APP_URL',$_CURRENT['TOOL']['URL']);
+    //$TOOL = new webApp($_CURRENT['TOOL']['NAME']);
+
+    $TOOL = new webTool($_CURRENT['TOOL']['NAME'],
+      SYSTEM_ROOT.APP_DIR.$_CURRENT['TOOL']['NAME'].'/',
+      PUBLIC_ROOT.APP_DIR.$_CURRENT['TOOL']['NAME'].'/',
+      PUBLIC_ROOT.ADMIN_DIR.DATA_DIR.$_CURRENT['TOOL']['NAME'].'/',
+      SYSTEM_ROOT.ADMIN_DIR.DATA_DIR.$_CURRENT['TOOL']['NAME'].'/'
+    );
+  }
+
+/*
+  // Crear objeto navbar aqui para dar la posibilidad a los parasitos de agregar items
+  if(includeFile($_CURRENT['LAYOUT'].'/navbar.class.php')===false)
+    $NAVBAR = new navbarMaker();
+  else
+    $NAVBAR = new navbar();
+*/
+
+#Cargar layout
+  if(file_exists($_CURRENT['LAYOUT'].'controller.php'))
+    $PAGE->set_layout($_CURRENT['LAYOUT'].'controller.php');
+  else
+    $PAGE->set_layout($_CURRENT['LAYOUT'].'layout.html');
+
+  # Load tool html headers
+  $TOOL->load_headers($PAGE);
+
+  #Parasit PostLoad actions (??)
+//TODO
+
+ob_start();
+
+    $tool_getContent_result = $TOOL->admin_get_content();//include(SYSTEM_ROOT.LIB_DIR.'cpanel.app.php');
+    $ob_result = ob_get_contents();
+
+    if(ob_end_clean() == 1)
+      $PAGE->body = $ob_result;
+
+    if($ob_result != null)
+      $PAGE->body .= $tool_getContent_result;
 
   #APP PreRender actions
-  $APP->load_headers();
-  $APP->pre_render_actions();
+  $TOOL->pre_render_actions($PAGE);
 
   #Parasit PreRender actions
-  //TODO
+//TODO
 
-  $PAGE->replace_document_vars('{@NAVBAR}', $NAVBAR->get_navbar());
+  #Load TOOL actions
+//TODO
+  //$PAGE->replace_var('{@TOOL_CONTENT}', $TOOL->get_content(WS_ADMIN));
+  //or
+  //$PAGE->replace_var('{@TOOL_WORLD}', $TOOL->get_content(WS_ADMIN));
+
+  # Render web page
   $PAGE->render();
 
   #APP PostRender actions
-  $APP->post_render_actions();
+  $TOOL->post_render_actions($PAGE);
 
   #Parasit PostRender actions
-  //TODO
- ?>
+//TODO
+?>

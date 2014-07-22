@@ -1,14 +1,25 @@
 <?php
   class navbarMaker{
     public $_NAVBAR_ITEMS = array();
+    public $ALLOW_AUTOMATED_RENDERING = true;
 //========================================
     function add_item($label,$link,$type='STD',$custom_param=false){
-      //array_merge($this->_NAVBAR_ITEMS, array('LABEL'=>$label,'LINK'=>$link));
       array_push($this->_NAVBAR_ITEMS, array('LABEL'=>$label,'LINK'=>$link,'TYPE'=>$type));
-      //$this->_NAVBAR_ITEMS += array('LABEL'=>$label,'LINK'=>$link);
     }
 //--------------------------------------------------------------------------------------
     function remove_item($label){ //TODO
+    }
+//--------------------------------------------------------------------------------------
+    function enable_autorender(){
+      $this->ALLOW_AUTOMATED_RENDERING = true;
+    }
+//--------------------------------------------------------------------------------------
+    function disable_autorender(){
+      $this->ALLOW_AUTOMATED_RENDERING = false;
+    }
+//--------------------------------------------------------------------------------------
+    function clean(){
+      $this->_NAVBAR_ITEMS = array();
     }
 //--------------------------------------------------------------------------------------
     function get_navbar($_echo=false){

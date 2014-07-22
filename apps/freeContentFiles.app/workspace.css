@@ -1,0 +1,63 @@
+#u-workspace {background-color:#D5D5D5;}
+.toolbar{border:0 none;background:#BBB none;margin-bottom:2px;}
+    .toolbar .button {text-align:center;width:22px;}
+        .toolbar .button span {display:block;text-indent:-999em;}
+
+.toolbar {height:30px;padding:2px 0 0 0;}
+.toolbar-separator {padding:0 5px; color:#777;}
+
+.file_list, .file_editor {display:block;}
+
+.file_list{width:210px;position:absolute;overflow:auto;height:600px;}
+    .file_list ul {list-style-type:none;}
+        .file_list li a {vertical-align:top;color:#444;text-decoration:none;}
+
+.file_list .back{list-style-image: url('./images/arrow_left.png');}
+.file_list .folder{list-style-image: url('./images/folder.png');}
+    .file_list .folder a {font-weight:bold;}
+    .file_list a:hover {color:#CC7A28;}
+    .file_list li:hover {background-color:#EEE;}
+.file_list .file{list-style-image: url('./images/page.png');}
+.file_list .html{list-style-image: url('./images/doc_text_image.png');}
+.file_list .php{list-style-image: url('./images/doc_php.png');}
+.file_list .css{list-style-image: url('./images/doc_css.png');}
+.file_list .xml{list-style-image: url('./images/doc_code.png');}
+.file_list .script{list-style-image: url('./images/doc_js.png');}
+.file_list .text{list-style-image: url('./images/doc_text.png');}
+.file_list .compress{list-style-image: url('./images/compress.png');}
+.file_list .pdf{list-style-image: url('./images/doc_pdf.png');}
+.file_list .image{list-style-image: url('./images/doc_image.png');}
+.file_list .audio{list-style-image: url('./images/doc_music.png');}
+.file_list .video{list-style-image: url('./images/doc_film.png');}
+
+.u-dialog .file_list {width:352px;position:relative;overflow:auto;height:370px;border:1px #AAA solid;background-color:#eee;}
+    .u-dialog .file_list li {vertical-align:top;}
+
+.file_editor{position:static;margin:0 0 0 212px;width:auto;padding:0 10px 0 0}
+.file_editor input{width:100%;margin:0 0 2px;padding:3px;}
+.file_editor textarea,
+.file_editor .textarea{ width:100%; padding:3px; border: 1px #ccc solid; background-color:#FFF4D8; margin:0 0 2px; font-family:monospace;font-size:125%;height:540px;}
+.file_editor .textarea{text-align:center;}
+    .file_editor .textarea a {margin-top:10%;}
+
+#ajax-new-file span, #dlg-new-file input[type=text] ,
+#ajax-new-folder span,  #dlg-new-folder input[type=text],
+#ajax-rename span, #dlg-rename input[type=text],
+#ajax-delete span,
+#ajax-upload-file span,
+#ajax-install-packet span {padding:2px 2px 2px 20px;}
+
+#ajax-new-file span, #dlg-new-file input[type=text] {background:transparent url('./images/file_add.png') no-repeat 50% 50%;}
+#ajax-new-folder span, #dlg-new-folder input[type=text]  {background:transparent url('./images/folder_add.png') no-repeat 50% 50%;}
+#ajax-rename span, #dlg-rename input[type=text] {background:transparent url('./images/textfield_rename.png') no-repeat 50% 50%;}
+#ajax-delete span{background:transparent url('./images/file_delete.png') no-repeat 50% 50%;}
+#ajax-upload-file span {background:transparent url('./images/page_get.png') no-repeat 50% 50%;}
+#ajax-install-packet span {background:transparent url('./images/box.png') no-repeat 50% 50%;}
+
+#dlg-new-file input[type=submit],
+#dlg-new-folder input[type=submit],
+#dlg-rename input[type=submit]{float:right;margin:0;}
+
+#dlg-new-file input[type=text],
+#dlg-new-folder input[type=text],
+#dlg-rename input[type=text] {background-position:2px 50%;background-color:#fff;width:50%;margin:0;}

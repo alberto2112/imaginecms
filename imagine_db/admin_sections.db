@@ -1,5 +1,6 @@
-#CODSECTION NAME APP ENABLED
-__DEFAULT:|:dashboard:|:null:|:1
-dashboard:|:Dashboard:|:dashboard.tool:|:1
-apps:|:APPs:|:apps.tool:|:1
-parasits:|:Parasits:|:parasits.tool:|:1
+#CODSECTION NAME TOOL ICON ENABLED
+*dashboard:|:Dashboard:|:dashboard.tool:|:null:|:1
+pages:|:Pages:|:pages.tool:|:null:|:1
+apps:|:APPs:|:apps.tool:|:null:|:1
+parasits:|:Parasits:|:parasits.tool:|:null:|:1
+config:|:Config:|:config.tool:|:null:|:1

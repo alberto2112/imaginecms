@@ -1,6 +1,5 @@
 #CODSECTION LABEL APP ENABLED
-__DEFAULT:|:home:|:null:|:1
-home:|:Home:|:freeContentFiles:|:1
+*home:|:Home:|:freeContentFiles:|:1
 services:|:Services:|:freeContentFiles:|:1
 about:|:About us:|:freeContentFiles:|:1
 work:|:Work:|:workingGallery:|:1

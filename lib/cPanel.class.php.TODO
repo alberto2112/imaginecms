@@ -1,0 +1,4 @@
+<?php
+  class cPanel implements i_cPanel {
+  }
+?>

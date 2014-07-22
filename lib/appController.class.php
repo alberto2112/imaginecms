@@ -10,14 +10,9 @@
         'NAME'=>$name,
         'PATH'=>(($path===null)?realpath( dirname(__FILE__)).'/': $path),
         'URL'=>$url,
+        'DIR'=>$url,
         'DATA_DIR'=>$ddir,
         'DATA_PATH'=>$dpath
-/*
-        'PATH'=>(($path===null)?SYSTEM_ROOT.APP_DIR.$name.'/': $path),
-        'URL'=>(($url===null)?PUBLIC_ROOT.APP_DIR.$name.'/': $url),
-        'DATA_DIR'=>(($ddir===null)?PUBLIC_ROOT.DATA_DIR.$name.'/':$ddir),
-        'DATA_PATH'=>(($dpath===null)?SYSTEM_ROOT.DATA_DIR.$name.'/':$dpath)
-*/
       );
     }
     public function run(){
@@ -26,9 +21,9 @@
     public function get(){
       return null;
     }
-    public function load_headers(){}
-    public function pre_render_actions(){}
-    public function post_render_actions(){}
+    public function load_headers($page_obj){}
+    public function pre_render_actions($page_obj){}
+    public function post_render_actions($page_obj){}
 
     function set_content($content){
       $this->_C = $content;
@@ -54,7 +49,7 @@
     }
 
     //Admin functions
-    function admin_dashboard(){
+    function admin_get_content(){
       return null;
     }
 

@@ -6,7 +6,7 @@
   define('LIB_DIR','lib/');
   define('DB_DIR','imagine_db/');
   define('APP_DIR','apps/');
-  define('LAYOUTS_DIR','themes/');
+  define('LAYOUTS_DIR','layout/');
   define('ADMIN_DIR','admin/');
   define('WORKSPACE_DIR','data/workspace/');
   define('SOFTWARE_DIR','software/');
@@ -21,7 +21,7 @@
   define('OPT_DEVELOPPING',true);
 
   define('URI_QUERY_SECTION','s');
-  define('URI_QUERY_MODULE','mod');
+  //define('URI_QUERY_MODULE','mod');
 
 # ======================================================= #
   define('SYSTEM_ROOT',realpath( dirname(__FILE__)).'/');
@@ -35,14 +35,19 @@
   define('PUBLIC_PATH',PUBLIC_ROOT);
   define('PUBLIC_DIR',PUBLIC_ROOT);
 
-  define('TXTBD_INDEX_CODE',0);
+  define('TXTBD_INDEX_CODSECTION','CODSECTION');
+  define('TXTBD_DEFAULT_INDEX_MARK','*');
   define('TXTBD_INDEX_LABEL',0);
   define('TXTBD_INDEX_NAME',0);
   define('TXTBD_INDEX_APP',1);
-  define('TXTBD_INDEX_LINK',1);
+  define('TXTBD_INDEX_LINK','APP');
   define('TXTBD_INDEX_ENABLED',2);
 
   define('ITEM_DISABLED','0');
   define('ITEM_ENABLED','1');
   define('ITEM_HIDDEN','2');
+
+  //WORKSPACES
+  define('WS_PUBLIC',0);
+  define('WS_ADMIN',1);
 ?>
