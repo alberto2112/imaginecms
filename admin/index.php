@@ -1,6 +1,6 @@
 <?php
   //TODO ALL
-  include('../config.inc');
+  include(__DIR__.'/../config.inc');
   include(SYSTEM_ROOT.LIB_DIR.'system.lib.php');
   //include(SYSTEM_ROOT.LIB_DIR.'txtDB.php');
 
@@ -16,8 +16,8 @@
   $PAGE->set_title('Admin page');
 
 #Get site config
-  $_DB['SECTIONS'] = getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'admin_sections.db');//getSections();//SYSTEM_ROOT.'sections.develtmp.inc';
-  $_DB['ADMINCONFIG'] = getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'admin.conf.db');
+  $_DB['SECTIONS'] = getSystem_FileDB(SYSTEM_ROOT.FDB_DIR.FDB_ADMIN_SECTIONS);//getSections();//SYSTEM_ROOT.'sections.develtmp.inc';
+  $_DB['ADMINCONFIG'] = getSystem_FileDB(SYSTEM_ROOT.FDB_DIR.FDB_ADMIN_CONF);
   $_CURRENT['LAYOUT'] = SYSTEM_ROOT.ADMIN_DIR.LAYOUTS_DIR.'imagine_admin'; //TODO
 
   //Algebra de bool, ley de Morgan !A · !B = !(A + B)
@@ -50,7 +50,7 @@
   }
 
 //TODO
-  if(includeFile($_CURRENT['TOOL']['PATH'].'controller.class.php')===false){
+  if(is_readable($_CURRENT['TOOL']['PATH'])===false){
     #Clear $_CURRENT['TOOL'] array
     $_CURRENT['TOOL']['PATH'] = $_CURRENT['TOOL']['URL'] = '';
 
@@ -58,16 +58,17 @@
     $TOOL->set_content("<p><strong>ERROR</strong> including TOOL class controller: ".$_CURRENT['TOOL']['NAME'].'</p>');
   }else{
     #Definir ruta absoluta PRIVADA de la aplicacion
-    define('CURRENT_APP_PATH',$_CURRENT['TOOL']['PATH']);
+    define('CURRENT_TOOL_PATH',$_CURRENT['TOOL']['PATH']);
     #Definir directorio PUBLICO relativo de la aplicacion
-    define('CURRENT_APP_URL',$_CURRENT['TOOL']['URL']);
+    define('CURRENT_TOOL_URL',$_CURRENT['TOOL']['URL']);
     //$TOOL = new webApp($_CURRENT['TOOL']['NAME']);
 
-    $TOOL = new webTool($_CURRENT['TOOL']['NAME'],
-      SYSTEM_ROOT.APP_DIR.$_CURRENT['TOOL']['NAME'].'/',
-      PUBLIC_ROOT.APP_DIR.$_CURRENT['TOOL']['NAME'].'/',
-      PUBLIC_ROOT.ADMIN_DIR.DATA_DIR.$_CURRENT['TOOL']['NAME'].'/',
-      SYSTEM_ROOT.ADMIN_DIR.DATA_DIR.$_CURRENT['TOOL']['NAME'].'/'
+    $TOOL = new appController(
+      $_CURRENT['TOOL']['NAME'],
+      $_CURRENT['TOOL']['PATH'],
+      $_CURRENT['TOOL']['URL'],
+      PUBLIC_ROOT.ADMIN_DIR.DATA_DIR.$_CURRENT['SECTION']['CODSECTION'].'/', //TODO: Buscar un directorio de trabajo correcto
+      SYSTEM_ROOT.ADMIN_DIR.DATA_DIR.$_CURRENT['SECTION']['CODSECTION'].'/' //TODO: Buscar un directorio de trabajo correcto
     );
   }
 
@@ -93,7 +94,7 @@
 
 ob_start();
 
-    $tool_getContent_result = $TOOL->admin_get_content();//include(SYSTEM_ROOT.LIB_DIR.'cpanel.app.php');
+    $tool_getContent_result = $TOOL->admin_get_cPanel();//include(SYSTEM_ROOT.LIB_DIR.'cpanel.app.php');
     $ob_result = ob_get_contents();
 
     if(ob_end_clean() == 1)

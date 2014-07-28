@@ -89,11 +89,11 @@
     //includeClass('appController');
     include(SYSTEM_ROOT.APP_DIR.$appname.'.app/controller.class.php');
     $app = new webApp(
-      $s[ $codSection ]['LABEL'],
-      null,
-      PUBLIC_ROOT.APP_DIR.$appname.'.app/',
-      PUBLIC_ROOT.DATA_DIR.$s[ $codSection ]['LABEL'],
-      SYSTEM_ROOT.DATA_DIR.$s[ $codSection ]['LABEL']
+      $s[ $codSection ]['LABEL'], //NAME
+      null, //PATH
+      PUBLIC_ROOT.APP_DIR.$appname.'.app/', //URL
+      PUBLIC_ROOT.DATA_DIR.$s[ $codSection ]['CODSECTION'], //DATA_DIR
+      SYSTEM_ROOT.DATA_DIR.$s[ $codSection ]['CODSECTION'] //DATA_PATH
     );
     $app->load_headers($PAGE);
     print $app->admin_get_content();

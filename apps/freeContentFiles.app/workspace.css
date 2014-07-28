@@ -1,3 +1,38 @@
+.fcf_workspace{background-color:#eee;}
+
+/* EDITOR */
+/*.fcf_editor_wrapper{float:right;width:80%}*/
+.fcf_editor_wrapper{position:static;margin:0 0 0 20%;}
+.fcf_editor_tools{background:#d5d5d5;height:32px;}
+.fcf_editor{background-color:#FFF4D8;min-height:168px; padding: 0 6px 0 0;}
+  .fcf_editor textarea,
+  .fcf_editor .textarea{ width:100%; border: 1px #ccc solid; background-color:#FFF4D8; font-family:monospace;font-size:125%;min-height:340px;}
+  .fcf_editor .textarea{text-align:center;}
+      .fcf_editor .textarea a {margin-top:10%;}
+
+/* LIST OF FILES */
+.fcf_lof{background-color:#eee;float:left;width:20%;min-height:200px;}
+  .fcf_lof .back{list-style-image: url('./images/arrow_left.png');}
+  .fcf_lof .folder{list-style-image: url('./images/folder.png');}
+  .fcf_lof .folder a {font-weight:bold;}
+  .fcf_lof a:hover {color:#CC7A28;}
+  .fcf_lof ul{padding:1em;list-style-type:none;}
+    .fcf_lof li:hover {background-color:#EEE;}
+    .fcf_lof li a {vertical-align:top;color:#444;text-decoration:none;}
+  .fcf_lof .file{list-style-image: url('./images/page.png');}
+  .fcf_lof .html{list-style-image: url('./images/doc_text_image.png');}
+  .fcf_lof .php{list-style-image: url('./images/doc_php.png');}
+  .fcf_lof .css{list-style-image: url('./images/doc_css.png');}
+  .fcf_lof .xml{list-style-image: url('./images/doc_code.png');}
+  .fcf_lof .script{list-style-image: url('./images/doc_js.png');}
+  .fcf_lof .text{list-style-image: url('./images/doc_text.png');}
+  .fcf_lof .compress{list-style-image: url('./images/compress.png');}
+  .fcf_lof .pdf{list-style-image: url('./images/doc_pdf.png');}
+  .fcf_lof .image{list-style-image: url('./images/doc_image.png');}
+  .fcf_lof .audio{list-style-image: url('./images/doc_music.png');}
+  .fcf_lof .video{list-style-image: url('./images/doc_film.png');}
+
+/* OLD STYLES */
 #u-workspace {background-color:#D5D5D5;}
 .toolbar{border:0 none;background:#BBB none;margin-bottom:2px;}
     .toolbar .button {text-align:center;width:22px;}
@@ -6,39 +41,18 @@
 .toolbar {height:30px;padding:2px 0 0 0;}
 .toolbar-separator {padding:0 5px; color:#777;}
 
+/*
 .file_list, .file_editor {display:block;}
-
 .file_list{width:210px;position:absolute;overflow:auto;height:600px;}
     .file_list ul {list-style-type:none;}
         .file_list li a {vertical-align:top;color:#444;text-decoration:none;}
-
-.file_list .back{list-style-image: url('./images/arrow_left.png');}
-.file_list .folder{list-style-image: url('./images/folder.png');}
-    .file_list .folder a {font-weight:bold;}
-    .file_list a:hover {color:#CC7A28;}
-    .file_list li:hover {background-color:#EEE;}
-.file_list .file{list-style-image: url('./images/page.png');}
-.file_list .html{list-style-image: url('./images/doc_text_image.png');}
-.file_list .php{list-style-image: url('./images/doc_php.png');}
-.file_list .css{list-style-image: url('./images/doc_css.png');}
-.file_list .xml{list-style-image: url('./images/doc_code.png');}
-.file_list .script{list-style-image: url('./images/doc_js.png');}
-.file_list .text{list-style-image: url('./images/doc_text.png');}
-.file_list .compress{list-style-image: url('./images/compress.png');}
-.file_list .pdf{list-style-image: url('./images/doc_pdf.png');}
-.file_list .image{list-style-image: url('./images/doc_image.png');}
-.file_list .audio{list-style-image: url('./images/doc_music.png');}
-.file_list .video{list-style-image: url('./images/doc_film.png');}
+*/
 
 .u-dialog .file_list {width:352px;position:relative;overflow:auto;height:370px;border:1px #AAA solid;background-color:#eee;}
     .u-dialog .file_list li {vertical-align:top;}
 
 .file_editor{position:static;margin:0 0 0 212px;width:auto;padding:0 10px 0 0}
 .file_editor input{width:100%;margin:0 0 2px;padding:3px;}
-.file_editor textarea,
-.file_editor .textarea{ width:100%; padding:3px; border: 1px #ccc solid; background-color:#FFF4D8; margin:0 0 2px; font-family:monospace;font-size:125%;height:540px;}
-.file_editor .textarea{text-align:center;}
-    .file_editor .textarea a {margin-top:10%;}
 
 #ajax-new-file span, #dlg-new-file input[type=text] ,
 #ajax-new-folder span,  #dlg-new-folder input[type=text],

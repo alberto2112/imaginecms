@@ -1,5 +1,5 @@
 <?php
-  include('./config.inc');
+  include(__DIR__.'/config.inc');
   include(SYSTEM_ROOT.LIB_DIR.'system.lib.php');
 
   includeClass("pageMaker");
@@ -13,7 +13,7 @@
   $PAGE = new pageMaker(); //'XHTML_1.0_STRICT'
 
   $_DB['SECTIONS'] = getSections(true);//SYSTEM_ROOT.'sections.develtmp.inc';
-  $_DB['SITECONFIG'] = getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'site.conf.db');
+  $_DB['SITECONFIG'] = getSystem_FileDB(SYSTEM_ROOT.FDB_DIR.FDB_SITE_CONF);
 
 //TODO -> Comprobar que el layout existe y es accesible
   $_CURRENT['LAYOUT'] = SYSTEM_ROOT.LAYOUTS_DIR.$_DB['SITECONFIG']['LAYOUT'].'/';
@@ -35,8 +35,8 @@
   $_CURRENT['QUERY_STRING'] = '?';
   $_CURRENT['APP'] = array(
     'NAME'=>$_CURRENT['SECTION']['APP'],
-    'PATH'=>SYSTEM_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'.app/',
-    'URL'=>PUBLIC_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'.app/'
+    'PATH'=>SYSTEM_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'/',
+    'URL'=>PUBLIC_ROOT.APP_DIR.$_CURRENT['SECTION']['APP'].'/'
     );
 
   #Definir URL absoluta de la aplicacion
@@ -55,22 +55,24 @@
   }
 
 //TODO
-  if(includeFile($_CURRENT['APP']['PATH'].'controller.class.php')===false){
+
+  if(is_readable($_CURRENT['APP']['PATH'])===false){
     #Clear $_CURRENT['APP'] array
     $_CURRENT['APP']['PATH'] = $_CURRENT['APP']['URL'] = '';
 
     $APP = new appController(null);
     $APP->set_content("<p><strong>ERROR</strong> including APP class controller: ".$_CURRENT['APP']['NAME'].'</p>');
   }else{
+
     #Definir ruta absoluta PRIVADA de la aplicacion
     define('CURRENT_APP_PATH',$_CURRENT['APP']['PATH']);
     #Definir directorio PUBLICO relativo de la aplicacion
     define('CURRENT_APP_URL',$_CURRENT['APP']['URL']);
     //$APP = new webApp($_CURRENT['APP']['NAME']);
-    $APP = new webApp(
+    $APP = new appController(
       $_CURRENT['APP']['NAME'],
-      SYSTEM_ROOT.APP_DIR.$_CURRENT['APP']['NAME'].'/',
-      PUBLIC_ROOT.APP_DIR.$_CURRENT['APP']['NAME'].'/',
+      $_CURRENT['APP']['PATH'],
+      $_CURRENT['APP']['URL'],
       PUBLIC_ROOT.DATA_DIR.$_CURRENT['SECTION']['CODSECTION'].'/',
       SYSTEM_ROOT.DATA_DIR.$_CURRENT['SECTION']['CODSECTION'].'/'
     );

@@ -1,15 +1,21 @@
 <?php
-  define('SITE_DOMAIN','imaginecms.com');
+  define('SITE_DOMAIN','localhost');
   define('PUBLIC_ROOT','/imaginecms/');
 
   define('DATA_DIR','data/');
   define('LIB_DIR','lib/');
-  define('DB_DIR','imagine_db/');
+  define('FDB_DIR','imagine_db/');
   define('APP_DIR','apps/');
   define('LAYOUTS_DIR','layout/');
   define('ADMIN_DIR','admin/');
   define('WORKSPACE_DIR','data/workspace/');
   define('SOFTWARE_DIR','software/');
+
+  define('FDB_PUBLIC_SECTIONS','public_sections.db');
+  define('FDB_ADMIN_SECTIONS','admin_sections.db');
+  define('FDB_APPS','apps.db');
+  define('FDB_SITE_CONF','site.conf.db');
+  define('FDB_ADMIN_CONF','admin.conf.db');
 
   define('DB_server','localhost');
   define('DB_user','pruebas');

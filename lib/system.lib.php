@@ -3,29 +3,38 @@
   if(!defined("SYSTEM_ROOT"))
     require(realpath( dirname(__FILE__).'/../config.inc'));
 //=======================================================
-  function includeClass($className, $sysClass = true){
+  function includeClass($className){
 //TODO
-    if($sysClass)
-      $className = SYSTEM_ROOT.LIB_DIR.$className.'.class.php';
-    return includeFile($className);
+    //if($sysClass)
+      //$className = SYSTEM_ROOT.LIB_DIR.$className.'.class.php';
+    return includeFile(SYSTEM_ROOT.LIB_DIR.$className.'.class.php');
   }
 
 //-------------------------------------------------------
 
-  function includeInterface($interfaceName, $sysInterface = true){
+  function includeLib($libName){
 //TODO
-    if($sysInterface)
-      $interfaceName = SYSTEM_ROOT.LIB_DIR.$interfaceName.'.interface.php';
-    return includeFile($interfaceName);
+    //if($libClass)
+      //$className = SYSTEM_ROOT.LIB_DIR.$className.'.class.php';
+    return includeFile(SYSTEM_ROOT.LIB_DIR.$libName.'.lib.php');
+  }
+
+//-------------------------------------------------------
+
+  function includeInterface($interfaceName){
+//TODO
+    //if($sysInterface)
+      //$interfaceName = SYSTEM_ROOT.LIB_DIR.$interfaceName.'.interface.php';
+    return includeFile(SYSTEM_ROOT.LIB_DIR.$interfaceName.'.interface.php');
   }
 
 //-------------------------------------------------------
 
   function includeAPI($app_name){
 //TODO
-    if($app_name)
-      $interfaceName = SYSTEM_ROOT.APP_DIR.$app_name.'/api.php';
-    return includeFile($interfaceName);
+    //if($app_name)
+      //$interfaceName = SYSTEM_ROOT.APP_DIR.$app_name.'/api.php';
+    return includeFile(SYSTEM_ROOT.APP_DIR.$app_name.'/api.php');
   }
 
 //-------------------------------------------------------
@@ -105,14 +114,14 @@
   /**
   * %alias of self::getSystem_FileDB
   */
-    return getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'sections.db', $del_default_marker);
+    return getSystem_FileDB(SYSTEM_ROOT.FDB_DIR.FDB_PUBLIC_SECTIONS, $del_default_marker);
   }
 //-------------------------------------------------------
   function getAdminSections($del_default_marker = false){
   /**
   * %alias of self::getSystem_FileDB
   */
-    return getSystem_FileDB(SYSTEM_ROOT.DB_DIR.'admin_sections.db', $del_default_marker);
+    return getSystem_FileDB(SYSTEM_ROOT.FDB_DIR.FDB_ADMIN_SECTIONS, $del_default_marker);
   }
 //-------------------------------------------------------
 //TODO
@@ -130,11 +139,11 @@
   * @return array()
   */
     if(!$codSection)
-      $codSection = getRequest_Param(URI_QUERY_SECTION, '__DEFAULT');
+      $codSection = getRequest_Param(URI_QUERY_SECTION, false);
 
     $dbs = (is_array($db_sections))? $db_sections : getSections();
 
-    if($codSection=='__DEFAULT'){
+    if($codSection===false){
       foreach($dbs as $key => $value){
         if(substr($key,0,1)==TXTBD_DEFAULT_INDEX_MARK)
           return $dbs[ $key ];

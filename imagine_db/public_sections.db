@@ -1,0 +1,7 @@
+#CODSECTION LABEL APP ENABLED
+*home:|:Home:|:freeContentFiles.app:|:1
+services:|:Services:|:freeContentFiles.app:|:1
+about:|:About us:|:freeContentFiles.app:|:1
+work:|:Work:|:workingGallery.app:|:0
+contact:|:Contact us:|:contactMaker.app:|:1
+__LINK:|:Admin:|:/imaginecms/admin/:|:1

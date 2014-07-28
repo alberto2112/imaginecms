@@ -1,15 +1,14 @@
 <?php
-    $force_read = getRequest_param('force_read',false);
-    if(!empty($actual_dir))
-        $actual_dir = "/$actual_dir";
+    $force_read = getRequest_param(QS_FORCE_FLREAD,false);
+    $filename = $this->get_info('DATA_PATH').$actual_dir.$filename;
 
-    if($filename && is_readable($iME['PATH_appdatadir'].$actual_dir.$filename) && is_file($iME['PATH_appdatadir'].$actual_dir.$filename))
+    if(!$filename===false && is_readable($filename) && is_file($filename))
     {
-        if(filesize($iME['PATH_appdatadir'].$actual_dir.$filename)>524288 && $force_read==false) # 512Ko
-            return '<div class="textarea"><a href="'.PATH_public.DIR_admin.'?'.$iME['LINK'].'&dirname='.$dirname.'&filename='.$filename.'&force_read=true" class="button">Forzar lectura de archivo</a></div>';
+        if(filesize($filename)>524288 && $force_read==false) # 512Ko
+            echo '<div class="textarea"><a href="'.$_CURRENT['QUERY_STRING'].'&amp;'.QS_DIRNAME.'='.$actual_dir.'&amp;'.QS_FILENAME.'='.$file.'&'.QS_FORCE_FLREAD.'=true" title="'.$file.'">Forzar lectura de archivo</a></div>';
         else
-            return '<textarea name="file_content">'.htmlspecialchars(file_get_contents($iME['PATH_appdatadir'].$actual_dir.$filename,FILE_TEXT)).'</textarea>';
+            echo '<textarea name="fcf_file_content">'.htmlspecialchars(file_get_contents($filename,FILE_TEXT)).'</textarea>';
     }
     else
-        return '<div class="textarea">&nbsp;</div>';
+        echo '<div class="textarea">&nbsp;</div>';
 ?>
